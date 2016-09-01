@@ -1,5 +1,7 @@
 William Christie
+
 SID: 810915676
+
 Email: william.christie@colorado.edu
 
 Submission Contents:
