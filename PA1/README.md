@@ -4,7 +4,7 @@ SID: 810915676
 
 Email: william.christie@colorado.edu
 
-### Submission Contents:
+### Submission Contents: ensure you start from /home/kernel/linux-4.4.0
 
 a. arch/x86/kernel/Simple_add.c
 
