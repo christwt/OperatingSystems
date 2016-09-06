@@ -33,11 +33,11 @@ f. /var/log/syslog
 g. Source Code for test programs.
   1. test_helloworld.c
   
-        tests system call 326 (sys_helloworld). Use dmesg to check prink statement. 
+        tests system call 326 (sys_helloworld). Use dmesg to check printk statement. 
 
   2. test_simple_add.c
 
-        tests system call 327 (sys_simple_add). Use dmesg to check prink statement.
+        tests system call 327 (sys_simple_add). Use dmesg to check printk statement.
         
 ## To Run:
   1. Ensure all files in this submission have been placed in their respective file paths.
