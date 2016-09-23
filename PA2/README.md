@@ -50,4 +50,4 @@ c. Makefile
   
   8. When finished uninstall module using the following command:
 
-      sudo rmmod simple_character_device
+        sudo rmmod simple_character_device
