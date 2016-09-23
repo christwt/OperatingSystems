@@ -7,7 +7,16 @@ william.christie@colorado.edu
 ##Using Linux Kernel Module Programming to Code a Character Device Driver
 
 ###Submission Contents.
+#### hello_modules folder
+a. PA2_helloModule.c
 
+    introductory character device to learn how to create, install and uninstall an LKM
+
+b. Makefile
+    
+    simple Makefile to compile PA2_helloModule.c to module object
+    
+#### Modules folder
 a. simple_char_driver.c
     
     LKM simple character device driver implementation
@@ -47,6 +56,7 @@ c. Makefile
   7. Run test_app using the following command:
     
         ./test_app
+        If desired: check any kernel output messages using --dmesg or --sudo tail /var/log/syslog
   
   8. When finished uninstall module using the following command:
 
