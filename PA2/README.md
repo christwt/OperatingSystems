@@ -4,47 +4,50 @@ SID: 810915675
 
 william.christie@colorado.edu	
 
-##PA2 Using Linux Kernel Module Programming to Code a Character Device Driver
+##Using Linux Kernel Module Programming to Code a Character Device Driver
 
 ###Submission Contents.
 
 a. simple_char_driver.c
-  LKM simple character device driver implementation
+    
+    LKM simple character device driver implementation
 
 b. test_app.c
-  simple user space testing application in for reading and writing to device a  file. 
+  
+    simple user space testing application in for reading and writing to device a  file. 
 
 c. Makefile
-  simple Makefile to compile simple_char_driver.c to a module object. 
+  
+    simple Makefile to compile simple_char_driver.c to a module object. 
 
 ###To Run: (Linux)
   1. Create a folder named modules and place all 3 submission files into the folder. 
   2. Create the module object with the following command:
 
-    make -C /lib/modules/$(uname -r)/build M=$PWD modules
+        make -C /lib/modules/$(uname -r)/build M=$PWD modules
 
   3. Compile the test application with the following command:
     
-    gcc -o test_app test_app.c
+        gcc -o test_app test_app.c
   
   4. Create the device file with the following command:
     
-    sudo mknod -m 777 /dev/simple_character_device c 247 0
-    it may be necessary to change 247 to some other major number of the driver. 
+        sudo mknod -m 777 /dev/simple_character_device c 247 0
+        it may be necessary to change 247 to some other major number of the driver. 
   
   5. Install the module with the following command: 
     
-    sudo insmod simple_character_device.ko
+        sudo insmod simple_character_device.ko
   
   6. Confirm module installation and device file installation  using the following commands: 
     
-    lsmod 
-    cat /proc/devices
+        lsmod 
+        cat /proc/devices
   
   7. Run test_app using the following command:
     
-    ./test_app
+        ./test_app
   
   8. When finished uninstall module using the following command:
 
-    sudo rmmod simple_character_device
+      sudo rmmod simple_character_device
