@@ -17,7 +17,7 @@ b. multi-lookup.h
 
 c. queue.c
     
-    Given non-thread-safe queue. Requester threads push pointers to C-string hostnames to queue and resolver threads pop from queue. FIFO principle. 
+    Provided non-thread-safe queue. Requester threads push pointers to C-string hostnames to queue and resolver threads pop from queue. FIFO principle. 
 
 d. queue.h
   
@@ -25,7 +25,7 @@ d. queue.h
 
 e. util.c
    
-    Given utility function to perform dns lookup based on given hostname and return the resolved IP address. 
+    Provided utility function to perform dns lookup based on given hostname and return the resolved IP address. 
 
 f. util.h
     
