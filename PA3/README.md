@@ -9,7 +9,9 @@ Programming Assignment 3: Use pthreads to code a DNS name resolution engine.
 ### Submission Contents:
 a. multi-lookup.c
     
-    Application which takes as input a set of name files, containing 1 hostname per line. Each name file is serviced by a single requestor thread from the requester pool and serviced by the maximum number of resolver threads to output each hostname with its IP address. 
+    Application which takes as input a set of name files, containing 1 hostname per line. 
+    Each name file is serviced by a single requestor thread from the requester pool and serviced 
+    by the maximum number of resolver threads to output each hostname with its IP address. 
 
 b. multi-lookup.h
     
