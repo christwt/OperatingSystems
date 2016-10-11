@@ -19,7 +19,8 @@ b. multi-lookup.h
 
 c. queue.c
     
-    Provided non-thread-safe queue. Requester threads push pointers to C-string hostnames to queue and resolver threads pop from queue. FIFO principle. 
+    Provided non-thread-safe queue. Requester threads push pointers to C-string hostnames to 
+    queue and resolver threads pop from queue. FIFO principle. 
 
 d. queue.h
   
