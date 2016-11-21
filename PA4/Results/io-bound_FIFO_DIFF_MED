@@ -1,0 +1,19 @@
+IO_FIFO_DIFF_MED
+
+wall=0.76 user=0.00 system=0.89 CPU=118% i-switched=4421 v-switched=17999
+wall=0.76 user=0.00 system=0.88 CPU=116% i-switched=4403 v-switched=16130
+wall=0.79 user=0.02 system=0.94 CPU=121% i-switched=4370 v-switched=16873
+wall=0.73 user=0.01 system=0.87 CPU=121% i-switched=4435 v-switched=17082
+
+Num Trials: 4
+Num Trials: 50
+
+avg wall = 0.0152
+avg user = 0.00015
+avg system = 0.0179
+avg CPU = 2.38
+avg i = 88.145
+avg v = 340.42
+
+
+

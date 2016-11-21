@@ -1,0 +1,16 @@
+MIXED_RR_SAME_LOW
+
+wall=0.30 user=0.04 system=0.27 CPU=105% i-switched=3 v-switched=6116
+wall=0.31 user=0.06 system=0.25 CPU=102% i-switched=0 v-switched=6798
+wall=0.31 user=0.07 system=0.26 CPU=106% i-switched=3 v-switched=6543
+wall=0.29 user=0.06 system=0.23 CPU=100% i-switched=3 v-switched=6714
+
+Num Trials: 4
+Num Processes: 10
+
+avg wall = 0.03025
+avg user = 0.00575
+avg system = 0.02525
+avg CPU = 10.325
+avg i = 0.225
+avg v = 654.275

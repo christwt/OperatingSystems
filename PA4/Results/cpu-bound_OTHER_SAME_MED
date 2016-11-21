@@ -1,0 +1,15 @@
+CPU_OTHER_SAME_MED
+
+wall=0.92 user=1.78 system=0.01 CPU=194% i-switched=512 v-switched=101
+wall=0.93 user=1.80 system=0.00 CPU=192% i-switched=478 v-switched=101
+wall=0.94 user=1.79 system=0.00 CPU=190% i-switched=528 v-switched=98
+wall=0.96 user=1.80 system=0.00 CPU=186% i-switched=551 v-switched=100
+
+Num Trials: 4
+Num Processes: 50
+avg wall = 0.01875
+avg user = 0.03585
+avg system = 0.00005
+avg CPU = 3.815
+avg i = 10.345
+avg v = 2

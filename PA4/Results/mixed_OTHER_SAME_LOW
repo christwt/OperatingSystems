@@ -1,0 +1,14 @@
+wall=0.34 user=0.03 system=0.15 CPU=54% i-switched=4634 v-switched=3922
+wall=0.35 user=0.05 system=0.14 CPU=58% i-switched=4444 v-switched=3927
+wall=0.36 user=0.06 system=0.15 CPU=59% i-switched=829 v-switched=3764
+wall=0.38 user=0.05 system=0.20 CPU=69% i-switched=1085 v-switched=3990
+
+Num Trials: 4
+Num Processes: 10
+
+avg wall = 0.03575
+avg user = 0.00475
+avg system = 0.016
+avg CPU = 6
+avg i = 275.025
+avg v = 390.075

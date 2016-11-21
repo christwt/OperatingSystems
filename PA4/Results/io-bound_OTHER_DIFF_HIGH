@@ -1,0 +1,17 @@
+IO_OTHER_DIFF_HIGH
+
+wall=1.50 user=0.03 system=1.46 CPU=99% i-switched=24324 v-switched=45863
+wall=1.53 user=0.03 system=1.39 CPU=93% i-switched=23503 v-switched=44011
+wall=1.56 user=0.02 system=1.60 CPU=104% i-switched=22423 v-switched=42351
+wall=1.53 user=0.04 system=1.35 CPU=90% i-switched=21320 v-switched=42469
+
+Num Trials: 4
+Num Processes: 150
+
+avg wall = 0.0102
+avg user = 0.000183
+avg system = 0.0096
+avg CPU = 0.6433
+avg i = 152.62
+avg v = 291.1566
+

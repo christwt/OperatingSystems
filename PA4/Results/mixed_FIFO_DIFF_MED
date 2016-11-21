@@ -1,0 +1,16 @@
+MIXED_FIFO_DIFF_MED
+
+wall=1.32 user=0.32 system=1.52 CPU=139% i-switched=10060 v-switched=32343
+wall=1.42 user=0.32 system=1.58 CPU=133% i-switched=9403 v-switched=31461
+wall=1.25 user=0.24 system=1.54 CPU=142% i-switched=9202 v-switched=30272
+wall=1.35 user=0.28 system=1.66 CPU=144% i-switched=9720 v-switched=32116
+
+Num Trials: 4
+Num Processes: 50
+
+avg wall = 0.0267
+avg user = 0.0058
+avg system = 0.0315
+avg CPU = 2.79
+avg i = 191.925
+avg v = 630.96

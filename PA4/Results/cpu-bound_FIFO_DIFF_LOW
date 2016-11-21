@@ -1,0 +1,16 @@
+CPU_FIFO_DIFF_LOW
+
+wall=0.19 user=0.35 system=0.00 CPU=189% i-switched=25 v-switched=23
+wall=0.22 user=0.35 system=0.00 CPU=157% i-switched=26 v-switched=24
+wall=0.20 user=0.37 system=0.00 CPU=184% i-switched=34 v-switched=24
+wall=0.19 user=0.36 system=0.00 CPU=184% i-switched=29 v-switched=23
+
+Num Trials: 4
+Num Processes: 10
+
+avg wall = 0.02
+avg user = 0.03575
+avg system = 0.00
+avg CPU = 17.85
+avg i = 2.85
+avg v = 2.35

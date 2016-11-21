@@ -1,0 +1,15 @@
+CPU_OTHER_DIFF_LOW
+
+wall=0.19 user=0.36 system=0.00 CPU=180% i-switched=89 v-switched=24
+wall=0.21 user=0.36 system=0.00 CPU=173% i-switched=111 v-switched=24
+wall=0.20 user=0.35 system=0.00 CPU=174% i-switched=103 v-switched=25
+wall=0.22 user=0.39 system=0.00 CPU=175% i-switched=126 v-switched=23
+
+Num Trails: 4
+Num Processes: 10
+avg wall = 0.0205
+avg user = 0.0365
+avg system = 0.00
+avg CPU = 17.55
+avg i = 10.75
+avg v = 3.2

@@ -1,0 +1,16 @@
+CPU_RR_DIFF_MED
+
+wall=1.00 user=1.82 system=0.01 CPU=183% i-switched=126 v-switched=104
+wall=0.97 user=1.80 system=0.02 CPU=185% i-switched=117 v-switched=106
+wall=1.02 user=1.89 system=0.02 CPU=186% i-switched=120 v-switched=107
+wall=1.02 user=1.86 system=0.00 CPU=182% i-switched=138 v-switched=103
+
+Num Trials: 4
+Num Processes: 50
+
+avg wall = 0.02005
+avg user = 0.03685
+avg system = 0.003
+avg CPU = 3.68
+avg i = 2.505
+avg v = 2.1

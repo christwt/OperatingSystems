@@ -1,0 +1,16 @@
+MIXED_RR_DIFF_HIGH
+
+wall=4.05 user=0.94 system=4.58 CPU=136% i-switched=24244 v-switched=108064
+wall=3.87 user=0.83 system=4.62 CPU=141% i-switched=24344 v-switched=106590
+wall=3.80 user=0.83 system=4.76 CPU=147% i-switched=25278 v-switched=133402
+wall=3.97 user=0.91 system=4.73 CPU=142% i-switched=23935 v-switched=116001
+
+Num Trials: 4
+Num Processes: 150
+
+avg wall = 0.02615
+avg user = 0.00585
+avg system = 0.03115
+avg CPU = 0.9433
+avg i = 163.0016
+avg v = 773.428

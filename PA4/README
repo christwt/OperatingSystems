@@ -1,0 +1,53 @@
+CS3753 (Operating Systems)
+Fall 2016
+University of Colorado Boulder
+Programming Assignment 4
+Public Code
+
+Originally prepared by Andy Sayler - 2012
+With help from Junho Ahn - 2012
+
+Revised by Shivakant Mishra - Fall 2016
+
+Adapted by William Christie - Fall 2016
+
+---Folders---
+/Results - Folder to store the results described in PA4WriteUp.pdf
+/data - Folder to contain the output of running ./testscript
+
+---Executables---
+./testscript2 - A simple bash script for running fifty-four test vectors 
+	        and outputting results to appropriately named files in /data.
+./cpu-bound - A simple program to statistically calculate pi over one million 
+	      iterations using a specified scheduling policy, number of
+	      simultaneous processes and distinction of same/different priority.
+./io-bound - A Simple program to read from an input file and write to an output file
+             using a specified scheduling policy, number of simultaneous processes 
+             and distinction of same/different priority.
+./mixed - A simple program to calculate pi over one hundred thousand iterations
+	  and perform an I/O read and write operation at every one thousandth 
+          iteration using a specified scheduling policy, number of simultaneous processes 
+          and distinction of same/different priority. 
+
+---Examples---
+Build:
+ make
+
+Clean:
+ make clean
+
+cpu-bound:
+ ./cpu-bound
+ ./cpu-bound <Scheduling Policy> <Number Simultaneous Processes> <Same/Diff priority>
+
+io-bound:
+ ./io-bound
+ ./io-bound <Scheduling Policy> <Number Simultaneous Processes> <Same/Diff priority>
+
+mixed:
+ ./mixed
+ ./mixed <Scheduling Policy> <Number Simultaneous Processes> <Same/Diff priority>
+
+testscript2:
+ ./testscript2
+

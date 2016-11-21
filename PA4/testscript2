@@ -1,0 +1,355 @@
+#/!/bin/bash
+
+#File: testscript
+#Author: Andy Sayler
+#Revised: Shivakant Mishra
+#Revised: William Christie
+#Project: CSCI 3753 Programming Assignment 4
+#Create Date: 2016/4/11
+#Modify Date: 2016/4/11
+#Description:
+#       A simple bash script to run test cases
+#       and gather relevant data and output to data folder.
+
+# Real time = %e, Time spent in kernel mode = %S, Time spent in user mode = %U
+# Percentage of CPU used = %P, Involuntary context switches = %c, Voluntary context switches = %w
+
+LOW=10
+MED=50
+HIGH=150
+BYTESCOPY=102400
+BLOCKSIZE=1024
+ITERATIONS=1000000
+TIMEFORMAT="wall=%e user=%U system=%S CPU=%P i-switched=%c v-switched=%w"
+MAKE="make -s"
+
+echo Building code ...
+$MAKE clean
+$MAKE
+
+echo Starting test runs...
+echo 
+
+############################## CPU-bound SCHED_OTHER tests
+echo Starting CPU-bound process tests using SCHED_OTHER
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with same priority
+echo and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_SAME_LOW -a ./cpu-bound SCHED_OTHER > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with same priority
+echo and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_SAME_MED -a ./cpu-bound SCHED_OTHER MEDIUM > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with same priority
+echo and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_SAME_HIGH -a ./cpu-bound SCHED_OTHER HIGH > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with differing
+echo priorities and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_DIFF_LOW -a sudo ./cpu-bound SCHED_OTHER LOW DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with differing
+echo priorities and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_DIFF_MED -a sudo ./cpu-bound SCHED_OTHER MEDIUM DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_OTHER with differing
+echo priorities and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_OTHER_DIFF_HIGH -a sudo ./cpu-bound SCHED_OTHER HIGH DIFF > /dev/null
+echo
+
+########################## CPU-bound SCHED_FIFO tests
+echo starting CPU-bound process tests using SCHED_FIFO
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with same priority
+echo and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_SAME_LOW -a sudo ./cpu-bound SCHED_FIFO > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with same priority
+echo and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_SAME_MED -a sudo ./cpu-bound SCHED_FIFO MEDIUM > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with same priority
+echo and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_SAME_HIGH -a sudo ./cpu-bound SCHED_FIFO HIGH> /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with differing
+echo priorities and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_DIFF_LOW -a sudo ./cpu-bound SCHED_FIFO LOW DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with differing
+echo priorities and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_DIFF_MED -a sudo ./cpu-bound SCHED_FIFO MEDIUM DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_FIFO with differing
+echo priorities and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_FIFO_DIFF_HIGH -a sudo ./cpu-bound SCHED_FIFO HIGH DIFF > /dev/null
+echo
+
+############################ CPU-bound SCHED_RR tests
+echo Starting CPU-bound process tests using SCHED_RR
+echo 
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with same priority
+echo and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_SAME_LOW -a sudo ./cpu-bound SCHED_RR > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with same priority
+echo and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_SAME_MED -a sudo ./cpu-bound SCHED_RR MEDIUM > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with same priority
+echo and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_SAME_HIGH -a sudo ./cpu-bound SCHED_RR HIGH > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with differing
+echo priorities and $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_DIFF_LOW -a sudo ./cpu-bound SCHED_RR LOW DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with differing
+echo priorities and $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_DIFF_MED -a sudo ./cpu-bound SCHED_RR MEDIUM DIFF > /dev/null
+echo
+
+echo Calculating pi over $ITERATIONS iterations using SCHED_RR with differing
+echo priorities and $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/cpu-bound_RR_DIFF_HIGH -a sudo ./cpu-bound SCHED_RR HIGH DIFF > /dev/null
+echo
+
+############################# IO-bound SCHED_OTHER tests
+echo Starting IO-bound process tests using SCHED_OTHER
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_OTHER with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_SAME_LOW -a ./io-bound SCHED_OTHER > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_OTHER with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_SAME_MED -a ./io-bound SCHED_OTHER MEDIUM > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_OTHER with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_SAME_HIGH -a ./io-bound SCHED_OTHER HIGH > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_OTHER with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_DIFF_LOW -a sudo ./io-bound SCHED_OTHER LOW DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_OTHER with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_DIFF_MED -a sudo ./io-bound SCHED_OTHER MEDIUM DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_OTHER with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_OTHER_DIFF_HIGH -a sudo ./io-bound SCHED_OTHER HIGH DIFF > /dev/null
+echo
+
+############################# IO-bound SCHED_FIFO tests
+echo Starting IO-bound process tests using SCHED_FIFO
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_FIFO with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_SAME_LOW -a sudo ./io-bound SCHED_FIFO > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_FIFO with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_SAME_MED -a sudo ./io-bound SCHED_FIFO MEDIUM > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_FIFO with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_SAME_HIGH -a sudo ./io-bound SCHED_FIFO HIGH> /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_FIFO with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_DIFF_LOW -a sudo ./io-bound SCHED_FIFO LOW DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_FIFO with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_DIFF_MED -a sudo ./io-bound SCHED_FIFO MEDIUM DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_FIFO with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_FIFO_DIFF_HIGH -a sudo ./io-bound SCHED_FIFO HIGH DIFF > /dev/null
+echo
+
+############################# IO-bound SCHED_RR tests
+echo Starting IO-bound process tests using SCHED_RR
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_RR with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_SAME_LOW -a sudo ./io-bound SCHED_RR > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_RR with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_SAME_MED -a sudo ./io-bound SCHED_RR MEDIUM > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with same priority using SCHED_RR with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_SAME_HIGH -a sudo ./io-bound SCHED_RR HIGH > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_RR with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_DIFF_LOW -a sudo ./io-bound SCHED_RR LOW DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_RR with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_DIFF_MED -a sudo ./io-bound SCHED_RR MEDIUM DIFF > /dev/null
+echo
+
+echo Copying $BYTESTOCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwoutput
+echo with different priorities using SCHED_RR with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/io-bound_RR_DIFF_HIGH -a sudo ./io-bound SCHED_RR HIGH DIFF > /dev/null
+echo
+
+############################# mixed SCHED_OTHER tests
+echo Starting mixed process tests using SCHED_OTHER
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_OTHER with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_SAME_LOW -a ./mixed SCHED_OTHER > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_OTHER with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_SAME_MED -a ./mixed SCHED_OTHER MEDIUM > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_OTHER with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_SAME_HIGH -a ./mixed SCHED_OTHER HIGH > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_OTHER with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_DIFF_LOW -a sudo ./mixed SCHED_OTHER LOW DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_OTHER with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_DIFF_MED -a sudo ./mixed SCHED_OTHER MEDIUM DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_OTHER with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_OTHER_DIFF_HIGH -a sudo ./mixed SCHED_OTHER HIGH DIFF > /dev/null
+echo
+
+############################# mixed SCHED_FIFO tests
+echo Starting mixed process tests using SCHED_FIFO
+echo 
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_FIFO with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_SAME_LOW -a sudo ./mixed SCHED_FIFO LOW > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_FIFO with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_SAME_MED -a sudo ./mixed SCHED_FIFO MEDIUM > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_FIFO with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_SAME_HIGH -a sudo ./mixed SCHED_FIFO HIGH > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_FIFO with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_DIFF_LOW -a sudo ./mixed SCHED_FIFO LOW DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_FIFO with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_DIFF_MED -a sudo ./mixed SCHED_FIFO MEDIUM DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_FIFO with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_FIFO_DIFF_HIGH -a sudo ./mixed SCHED_FIFO HIGH DIFF > /dev/null
+echo
+
+############################# mixed SCHED_RR tests
+echo Starting mixed process tests using SCHED_RR
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_RR with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_SAME_LOW -a sudo ./mixed SCHED_RR LOW > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_RR with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_SAME_MED -a sudo ./mixed SCHED_RR MEDIUM > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo same priorities using SCHED_RR with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_SAME_HIGH -a sudo ./mixed SCHED_RR HIGH > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_RR with $LOW simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_DIFF_LOW -a sudo ./mixed SCHED_RR LOW DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_RR with $MED simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_DIFF_MED -a sudo ./mixed SCHED_RR MEDIUM DIFF > /dev/null
+echo
+
+echo Running mixed process test calculating pi using 100000 iterations and copying 
+echo $BYTESCOPY bytes in blocks of $BLOCKSIZE from rwinput to rwouput with 
+echo different priorities using SCHED_RR with $HIGH simultaneous processes...
+/usr/bin/time -f "$TIMEFORMAT" -o data/mixed_RR_DIFF_HIGH -a sudo ./mixed SCHED_RR HIGH DIFF > /dev/null
+echo

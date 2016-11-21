@@ -1,0 +1,17 @@
+CPU_FIFO_SAME_MED
+
+wall=0.93 user=1.79 system=0.00 CPU=193% i-switched=4 v-switched=56
+wall=0.93 user=1.80 system=0.00 CPU=192% i-switched=5 v-switched=56
+wall=1.09 user=2.00 system=0.00 CPU=182% i-switched=4 v-switched=59
+wall=0.94 user=1.81 system=0.00 CPU=191% i-switched=5 v-switched=56
+
+Num Trials: 4
+Num Processes: 50
+
+avg wall = 0.01945
+avg user = 0.037
+avg system = 0.00
+avg CPU = 3.79
+avg i = 0.1125
+avg v = 1.135
+

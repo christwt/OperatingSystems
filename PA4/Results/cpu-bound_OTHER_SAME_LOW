@@ -1,0 +1,15 @@
+CPU_OTHER_SAME_LOW
+
+wall=0.19 user=0.36 system=0.00 CPU=186% i-switched=96 v-switched=20
+wall=0.19 user=0.36 system=0.00 CPU=184% i-switched=96 v-switched=20
+wall=0.20 user=0.35 system=0.01 CPU=180% i-switched=97 v-switched=20
+wall=0.23 user=0.37 system=0.00 CPU=160% i-switched=103 v-switched=21
+
+Num Trials: 4
+Num Processes: 10
+avg wall = 0.02025
+avg user = 0.036
+avg system = .00025
+avg CPU = 17.75% 
+avg i = 9.8
+avg v = 2.025
